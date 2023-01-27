@@ -1,2 +1,0 @@
-// Henlo
-console.log("kaan")
