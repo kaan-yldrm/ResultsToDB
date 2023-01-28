@@ -1,0 +1,28 @@
+{
+  "name": "resultstodb",
+  "version": "1.0.0",
+  "description": "Node.js RESTful API to PDF upload, read and save to DB",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kaan-yldrm/ResultsToDB.git"
+  },
+  "keywords": [
+    "nodejs",
+    "restful",
+    "api"
+  ],
+  "author": "kaan-yildirim",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kaan-yldrm/ResultsToDB/issues"
+  },
+  "homepage": "https://github.com/kaan-yldrm/ResultsToDB#readme",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
