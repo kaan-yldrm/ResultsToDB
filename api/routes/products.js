@@ -1,5 +1,8 @@
 const express = require('express');
 const router = express.Router();
+const mongoose = require('mongoose');
+const Product = require('../Models/productModel');
+//productModel.js'den Product'u getirmek için
 
 router.get('/', (req, res, next) => {
     res.status(200).json({
@@ -8,10 +11,24 @@ router.get('/', (req, res, next) => {
 }); // sadece / olmasının sebebi /products yazarsak aradığı şey /products/products olacak
 
 router.post('/', (req, res, next) => {
-    const product = {
+//    const product = {
+//        name: req.body.name,
+//        price: req.body.price
+//    };
+
+// alttaki MongoAtlas ile beraber çalışmasında
+// üstteki ise postman'dan giriş yaparken kullandığın
+
+const product = new Product({
+        _id: new mongoose.Types.ObjectId(),
         name: req.body.name,
-        price: req.body.price
-    };
+        price: req.body.price        
+    });
+
+    product.save().then(result => {
+        console.log(result);
+    }).catch(err => console.log(err));
+    // product bilgilerini kaydeder ve sonucunu çıkartır, hata verdiyse hatayı çıkartır.
     res.status(201).json({
         message: 'POST istekleri buradan isliyor',
         createdProduct: product

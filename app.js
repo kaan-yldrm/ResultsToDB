@@ -8,8 +8,14 @@ const mongoose = require('mongoose');
 const productRoutes = require('./api/routes/products');
 const orderRoutes = require('./api/routes/orders');
 
-mongoose.connect('mongodb+srv://Henlo1here:' + process.env.MONGO_ATLAS_PWD + '@henlo.2m8afdg.mongodb.net/?retryWrites=true&w=majority', {
-    useMongoClient: true
+
+const { MongoClient, ServerApiVersion } = require('mongodb');
+const uri = "mongodb+srv://Henlo1here:" + process.env.MONGO_ATLAS_PWD + "@henlo.2m8afdg.mongodb.net/?retryWrites=true&w=majority";
+const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
+client.connect(err => {
+  const collection = client.db("test").collection("devices");
+  // perform actions on the collection object
+  client.close();
 });
 
 //app.use((req, res, next) => {
