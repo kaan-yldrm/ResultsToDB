@@ -2,9 +2,15 @@ const express = require('express'); //express.js için
 const app = express(); // express'in çalıştırılması için
 const morgan = require('morgan'); // will log API requests
 const bodyParser = require('body-parser');
+const mongoose = require('mongoose');
+
 
 const productRoutes = require('./api/routes/products');
 const orderRoutes = require('./api/routes/orders');
+
+mongoose.connect('mongodb+srv://Henlo1here:' + process.env.MONGO_ATLAS_PWD + '@henlo.2m8afdg.mongodb.net/?retryWrites=true&w=majority', {
+    useMongoClient: true
+});
 
 //app.use((req, res, next) => {
 //    res.status(200).json({
@@ -17,6 +23,15 @@ app.use(morgan('dev')); // products ve orders'dan önce koyduk
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json()); // json formatında çıkartılıp rahatça okunması için
 
+app.use((req, res, next) => {
+    res.header('Access-Control-Allow-Origin', '*'); // * olarak belirlemek erişimin herhangi bir adrese açık olduğunu belirtiyor
+    res.header('Access-Control-Allow-Headers', '*');
+    if(req.method === 'OPTIONS') {
+        res.header('Access-Control-Allow-Methods', 'PUT, POST, PATCH, DELETE');
+        return res.status(200).json({});
+    }
+    next(); // next olmaz ise if çalışmadığı durumlarda diğer kısımlara geçmiyor
+});
 
 app.use('/products', productRoutes);    // /products'a gelen istekler productRoutes'u çağıracak oda 
 // ./api/routes/products'u çağıracak
