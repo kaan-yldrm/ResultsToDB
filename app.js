@@ -1,6 +1,7 @@
 const express = require('express'); //express.js için
 const app = express(); // express'in çalıştırılması için
 const morgan = require('morgan'); // will log API requests
+const bodyParser = require('body-parser');
 
 const productRoutes = require('./api/routes/products');
 const orderRoutes = require('./api/routes/orders');
@@ -13,6 +14,9 @@ const orderRoutes = require('./api/routes/orders');
 
 app.use(morgan('dev')); // products ve orders'dan önce koyduk
 // önce koyulmasının sebebi onlar çalışıyorken devrede olması için
+app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.json()); // json formatında çıkartılıp rahatça okunması için
+
 
 app.use('/products', productRoutes);    // /products'a gelen istekler productRoutes'u çağıracak oda 
 // ./api/routes/products'u çağıracak

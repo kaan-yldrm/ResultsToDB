@@ -8,8 +8,13 @@ router.get('/', (req, res, next) => {
 }); // yine /orders/orders olmasın diye tek / ile bitirdik, asıl işlemi app.js de yapacağız
 
 router.post('/', (req, res, next) => {
+    const order = {
+        productId: req.body.productId,
+        quantity: req.body.quantity
+    };
     res.status(201).json ({ // 201 success için
-        message: 'Siparis olusturuldu'
+        message: 'Siparis olusturuldu',
+        order: order
     });
 });
 
