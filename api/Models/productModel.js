@@ -6,5 +6,10 @@ const productSchema = mongoose.Schema({
     price: Number
 });
 
-module.exports = mongoose.model('Product', productSchema);
+//async function run() {
+//    await mongoose.connect('localhost:3000');
+//    mongoose.model('Product', productSchema);
+//}
+//await mongoose.model('Product').findOne();
 //
+module.exports = mongoose.model('Product', productSchema);
