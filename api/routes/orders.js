@@ -21,7 +21,8 @@ router.post('/', (req, res, next) => {
 router.get('/:orderId', (req, res, next) => { // : ile dinakmik oluyor
     res.status(200).json ({
         message: 'Siparis detayi',
-        orderId: req.params.orderId
+        orderId: req.params.orderId,
+        quantity: req.body.quantity
     });
 });
 

@@ -34,25 +34,14 @@ router.get('/', (req, res, next) => {
 // alttaki MongoAtlas ile beraber çalışmasında
 // üstteki ise postman'dan giriş yaparken kullandığın
 router.post('/', (req, res, next) => {
-const product = new Product({
-        _id: new mongoose.Types.ObjectId(),
-        name: req.body.name,
-        price: req.body.price        
-    });
-
-    product
-    .save()
-    .then(result => {
-        console.log(result);
-        res.status(201).json({
-            message: 'POST istekleri buradan isliyor',
-            createdProduct: product // POSTMAN'deki yaptığım girdiler ile burada bilgiler ile product'u oluşturuyor
-        });
-    })
-    .catch(err => {
-        console.log(err);
-        res.status(500).json({error: err});
-    });  // product bilgilerini kaydeder ve sonucunu çıkartır, hata verdiyse hatayı çıkartır.
+const product = {
+    name: req.body.name,
+    price: req.body.price
+};
+res.status(201).json({
+    message: " products post requestleri burada",
+    createdProduct: product
+});
 });
 
 
